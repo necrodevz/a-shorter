@@ -1,23 +1,40 @@
 import React from 'react';
 
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+import Layout from './components/Layout';
+
+import {Theme as UWPThemeProvider, getTheme} from 'react-uwp/Theme';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <UWPThemeProvider 
+        theme={getTheme({
+          themeName: 'dark',
+          accent: '#0078D7',
+          useFluentDesign: true,
+        })}>
+          <Layout>
+            <Switch>
+              <Route exact path='/'>
+
+              </Route>
+              <Route path='/extras'>
+
+              </Route>
+              <Route path='/onboarding'>
+
+              </Route>
+              <Route path='/timekey'>
+
+              </Route>
+              <Route path='/xyz'>
+              </Route>
+            </Switch>
+          </Layout>
+        </UWPThemeProvider>
+    </Router>    
   );
 }
 
