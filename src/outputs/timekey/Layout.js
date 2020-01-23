@@ -1,4 +1,26 @@
-function Layout() {
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Button from '@material-ui/core/Button';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Fab from '@material-ui/core/Fab';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+  },
+  table: {
+    minWidth: 700,
+  },
+}));
+
+
+export default function Layout({children}) {
   
     const classes = useStyles();
     const [value, setValue] = React.useState('recents');
@@ -53,10 +75,7 @@ function Layout() {
           </Paper>
         </Grid>
       </Grid>
-      <Fab variant="extended" float="right">
-        <NavigationIcon className={classes.extendedIcon} />
-          Navigate
-      </Fab>
+    
     </Grid>    
   );
 }

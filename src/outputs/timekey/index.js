@@ -2,14 +2,7 @@ import React from 'react';
 
 import Layout from './Layout'
 
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import Button from '@material-ui/core/Button';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -40,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
+  const classes = useStyles();
   return (
       <Layout>
         <TableContainer component={Paper}>
