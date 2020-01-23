@@ -1,4 +1,7 @@
 import React from 'react';
+
+import {useHistory} from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import SpeedDial from '@material-ui/lab/SpeedDial';
@@ -24,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const actions = [
-  { icon: <FileCopyIcon />, name: 'Copy' },
+  { icon: <FileCopyIcon />, name: 'Timekey' },
   { icon: <SaveIcon />, name: 'Save' },
   { icon: <PrintIcon />, name: 'Print' },
   { icon: <ShareIcon />, name: 'Share' },
@@ -35,6 +38,8 @@ export default function SpeedDialTooltipOpen({setOpen, open}) {
   const classes = useStyles();
   
   const [hidden, setHidden] = React.useState(false);
+
+  let history = useHistory();
 
   const handleVisibility = () => {
     setHidden(prevHidden => !prevHidden);
@@ -47,6 +52,12 @@ export default function SpeedDialTooltipOpen({setOpen, open}) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleNavigation = (slug) => {
+    console.log(`${slug}`);
+    history.push(`/${slug}`);
+    setOpen(false);
+  }
 
   return (
     <div className={classes.root}>
@@ -66,7 +77,7 @@ export default function SpeedDialTooltipOpen({setOpen, open}) {
             icon={action.icon}
             tooltipTitle={action.name}
             tooltipOpen
-            onClick={handleClose}
+            onClick={()=>handleNavigation(action.name)}
           />
         ))}
       </SpeedDial>
