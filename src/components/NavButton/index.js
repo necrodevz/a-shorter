@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {useHistory} from 'react-router-dom';
+//import {useHistory} from 'react-router-dom';
+import history from '../../utils/history';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -39,7 +40,7 @@ export default function SpeedDialTooltipOpen({setOpen, open}) {
   
   const [hidden, setHidden] = React.useState(false);
 
-  let history = useHistory();
+  //let history = useHistory();
 
   const handleVisibility = () => {
     setHidden(prevHidden => !prevHidden);

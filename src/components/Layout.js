@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {useAuth0} from '../react-auth0-spa';
+
 import AppBar from '@material-ui/core/AppBar';
 import Backdrop from '@material-ui/core/Backdrop';
 import Button from '@material-ui/core/Button';
@@ -31,11 +33,12 @@ const useStyles = makeStyles(theme => ({
 export default function Layout({children})
 {
     const [open, setOpen] = React.useState(false);
+    const {isAuthenticated, loginWithPopup, logout} = useAuth0();
     const classes = useStyles();
     return(
         <>
         <Backdrop open={open} />
-        <AppBar position="static">
+        <AppBar position="sticky">
             <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />
@@ -43,7 +46,8 @@ export default function Layout({children})
             <Typography variant="h6" className={classes.title}>
                 A-NET Client Enterprise Application
             </Typography>
-            <Button color="inherit">Login</Button>
+            {!isAuthenticated && <Button color="inherit" onClick={()=>loginWithPopup({})}>Login</Button>}
+            {isAuthenticated && <Button color="inherit" onClick={()=>logout()}>Logout</Button>}
             </Toolbar>
         </AppBar>
         <Container fixed>
