@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import NavButton from './NavButton'
 import MenuIcon from '@material-ui/icons/Menu';
@@ -30,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-export default function Layout({children})
+export default function Layout({children, loading})
 {
     const [open, setOpen] = React.useState(false);
     const {isAuthenticated, loginWithPopup, logout} = useAuth0();
@@ -49,6 +50,7 @@ export default function Layout({children})
             {!isAuthenticated && <Button color="inherit" onClick={()=>loginWithPopup({})}>Login</Button>}
             {isAuthenticated && <Button color="inherit" onClick={()=>logout()}>Logout</Button>}
             </Toolbar>
+            {loading && <LinearProgress color="secondary" />}
         </AppBar>
         <Container fixed>
             {children}

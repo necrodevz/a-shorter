@@ -2,7 +2,7 @@ import React from 'react';
 import history from './utils/history';
 
 import {Router, Route, Switch} from 'react-router-dom';
-import { Auth0Provider } from "./react-auth0-spa";
+import { Auth0Provider, useAuth0 } from "./react-auth0-spa";
 
 import Layout from './components/Layout'; 
 
@@ -11,11 +11,31 @@ import Market from './outputs/market';
 import Home from './outputs/home';
 
 
+const PrivateRoute = ({ setLoading, component: Component, path, ...rest }) => {
+  const { loading, isAuthenticated, loginWithRedirect } = useAuth0();
 
+  React.useEffect(() => {
+    if (loading || isAuthenticated) {
+      setLoading(true);
+      return;
+    }
+    const fn = async () => {
+      await loginWithRedirect({
+        appState: { targetUrl: path }
+      });
+    };
+    fn();
+  }, [loading, isAuthenticated, loginWithRedirect, path]);
+
+  const render = props =>
+    isAuthenticated === true ? <Component {...props} /> : null;
+
+  return <Route path={path} render={render} {...rest} />;
+};
 
 function App() {
   
-
+  const [progressloading, setProgressLoading] = React.useState(false)
   const onRedirectCallback = appState => {
     history.push(
       appState && appState.targetUrl
@@ -31,18 +51,18 @@ function App() {
     redirect_uri={`${window.location.origin}/Timekey`}
     onRedirectCallback={onRedirectCallback}
   >
-    <Layout>
+    <Layout loading={progressloading}>
       <Router history={history}>
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/Timekey">
+          <PrivateRoute setLoading={setProgressLoading} path="/Timekey">
             <Timekey />
-          </Route>
-          <Route path="/Market">
+          </PrivateRoute>
+          <PrivateRoute path="/Market">
             <Market />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Router>
     </Layout>
