@@ -7,8 +7,11 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider'
+import Avatar from '@material-ui/core/Avatar'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,13 +23,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Layout({children}) {
+export default function Layout({children, handleNav}) {
   
     const classes = useStyles();
-    const [value, setValue] = React.useState('recents');
+    const [value, setValue] = React.useState(0);
   
     const handleChange = (event, newValue) => {
       setValue(newValue);
+      handleNav(newValue);
     };
 
     function a11yProps(index) {
@@ -37,21 +41,25 @@ export default function Layout({children}) {
     }
 
   return (
-    <Grid container spacing={3} style={{marginTop: '10vh'}}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="action tabs example"
-        >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
+    <Grid container spacing={3} style={{marginTop: '12vh', overflow: 'hidden'}}>
+      <Grid item xs={12}>
+        <Grid container alignItems="space-between" spacing={8}>
+          <Grid container item xs md={4} spacing={4}>
+            <Grid item xs>
+              <Avatar />
+            </Grid>
+            <Grid item xs>
+            <Typography variant="h1" component="h2">
+               Timekey Main
+            </Typography>
+            </Grid>
+          </Grid>
+          <Grid item xs>
+            <Button variant="outlined">Time In</Button>
+          </Grid>
+        </Grid>
+        <Divider />
+      </Grid>
       <Grid item md={12} xs={12}>
           {children}
       </Grid>
@@ -59,7 +67,7 @@ export default function Layout({children}) {
         <Grid item container md={3} xs={6}>
           <Grid item xs md={6}>
             <Paper>
-              <Button>Button1</Button>
+              <Button disabled>Button1</Button>
             </Paper>
           </Grid>
           <Grid item xs md={6}>
@@ -71,11 +79,17 @@ export default function Layout({children}) {
         <Grid item md={6} xs={12} />
         <Grid item md={3} xs={6}>
           <Paper>
-            <Button>Button3</Button>
+            <Button>Cancel Selection</Button>
           </Paper>
         </Grid>
       </Grid>
-    
+      <Grid item xs={12}>
+      <Tabs value={value} onChange={handleChange}>
+        <Tab label="Main"/>
+        <Tab label="Timesheets"/>
+        <Tab label="Pay Advice" />
+      </Tabs>
+      </Grid>
     </Grid>    
   );
 }

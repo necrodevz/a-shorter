@@ -60,7 +60,7 @@ function App() {
           <PrivateRoute setLoading={setProgressLoading} path="/Timekey">
             <Timekey />
           </PrivateRoute>
-          <PrivateRoute path="/Market">
+          <PrivateRoute setLoading={setProgressLoading} path="/Market">
             <Market />
           </PrivateRoute>
         </Switch>
