@@ -44,7 +44,7 @@ export default function Layout({children, loading})
     const classes = useStyles();
     return(
         <div className={classes.body}>
-        <AppBar position="absolute">
+        <AppBar position="sticky">
             <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />
@@ -57,7 +57,7 @@ export default function Layout({children, loading})
             </Toolbar>
             {loading && <LinearProgress color="secondary" />}
         </AppBar>
-        <Container fixed>
+        <Container fixed style={{paddingTop: '5rem'}}>
             {children}
         </Container>
         <NavButton open={open} setOpen={setOpen} />

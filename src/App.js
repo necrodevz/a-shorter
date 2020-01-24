@@ -46,11 +46,11 @@ function App() {
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   return (
     <Auth0Provider
-    domain={process.env.REACT_APP_AUTH0_DOMAIN}
-    client_id={process.env.REACT_APP_AUTH0_CLIENTID}
-    redirect_uri={`${window.location.origin}/Timekey`}
-    onRedirectCallback={onRedirectCallback}
-  >
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      client_id={process.env.REACT_APP_AUTH0_CLIENTID}
+      redirect_uri={`${window.location.origin}/Timekey`}
+      onRedirectCallback={onRedirectCallback}
+    >
     <Layout loading={progressloading}>
       <Router history={history}>
         <Switch>

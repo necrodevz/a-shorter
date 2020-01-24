@@ -41,7 +41,7 @@ export default function Layout({children, handleNav}) {
     }
 
   return (
-    <Grid container spacing={3} style={{marginTop: '12vh', overflow: 'hidden'}}>
+    <Grid container spacing={3} style={{overflow: 'hidden'}}>
       <Grid item xs={12}>
         <Grid container alignItems="space-between" spacing={8}>
           <Grid container item xs md={4} spacing={4}>
@@ -66,29 +66,19 @@ export default function Layout({children, handleNav}) {
       <Grid container item spacing={4} xs={12}>
         <Grid item container md={3} xs={6}>
           <Grid item xs md={6}>
-            <Paper>
-              <Button disabled>Button1</Button>
-            </Paper>
+              <Button variant="outlined" color="primary" disabled>Button1</Button>
           </Grid>
           <Grid item xs md={6}>
-          <Paper>
-            <Button>Button2</Button>
-          </Paper>
+            <Button color="primary">Button2</Button>
           </Grid>
         </Grid>
         <Grid item md={6} xs={12} />
         <Grid item md={3} xs={6}>
-          <Paper>
-            <Button>Cancel Selection</Button>
-          </Paper>
+            <Button color="secondary">Cancel Selection</Button>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-      <Tabs value={value} onChange={handleChange}>
-        <Tab label="Main"/>
-        <Tab label="Timesheets"/>
-        <Tab label="Pay Advice" />
-      </Tabs>
+      <Grid item xs={12} alignContent="space-between">
+
       </Grid>
     </Grid>    
   );
