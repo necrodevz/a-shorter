@@ -57,9 +57,9 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <PrivateRoute setLoading={setProgressLoading} path="/Timekey">
+          <Route setLoading={setProgressLoading} path="/Timekey">
             <Timekey />
-          </PrivateRoute>
+          </Route>
           <PrivateRoute setLoading={setProgressLoading} path="/Market">
             <Market />
           </PrivateRoute>

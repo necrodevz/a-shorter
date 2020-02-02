@@ -12,9 +12,9 @@ function TimeKey() {
   const {url} = useRouteMatch();
   console.log(url)
   return (
-    <Layout>
+    <Layout headerText={"Timekey"}>
         <Switch>
-          <Route path={`${url}`+ "/"}>
+          <Route exact path={`${url}`+ "/"}>
             <Main />
           </Route>
           <Route path={`${url}`+ "/payAdvices"}>

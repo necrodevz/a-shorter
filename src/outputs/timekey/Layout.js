@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider'
 import Avatar from '@material-ui/core/Avatar'
 
+import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -20,10 +22,13 @@ const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 700,
   },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
 }));
 
 
-export default function Layout({children, handleNav}) {
+export default function Layout({children, handleNav, headerText}) {
   
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -50,7 +55,7 @@ export default function Layout({children, handleNav}) {
             </Grid>
             <Grid item xs>
             <Typography variant="h1" component="h2">
-               Timekey Main
+               {headerText}
             </Typography>
             </Grid>
           </Grid>
@@ -78,7 +83,15 @@ export default function Layout({children, handleNav}) {
         </Grid>
       </Grid>
       <Grid item xs={12} alignContent="space-between">
-
+        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
+            <MenuIcon />
+        </IconButton>
+        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
+            <MenuIcon />
+        </IconButton>
+        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
+            <MenuIcon />
+        </IconButton>
       </Grid>
     </Grid>    
   );

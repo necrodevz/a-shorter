@@ -10,6 +10,7 @@ import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
+import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -35,18 +36,24 @@ const useStyles = makeStyles(theme => ({
     title: {
       flexGrow: 1,
     },
+    drawer: {
+      zIndex: 1000,
+      height: '95vh'
+    }
   }));
 
-export default function Layout({children, loading})
+export default function Layout({children, loading, isRightDrawerContent: RightDrawerComponent, isLeftDrawerComponent: SettingsPaneComponent})
 {
     const [open, setOpen] = React.useState(false);
+    const [drawerLeftOpen, setDrawerLeftOpen] = React.useState(false)
     const {isAuthenticated, loginWithPopup, logout} = useAuth0();
     const classes = useStyles();
     return(
         <div className={classes.body}>
+        
         <AppBar position="sticky">
             <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={()=>setDrawerLeftOpen(true)}>
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
@@ -58,7 +65,9 @@ export default function Layout({children, loading})
             {loading && <LinearProgress color="secondary" />}
         </AppBar>
         <Container fixed style={{paddingTop: '5rem'}}>
-            {children}
+            
+              {children}
+            
         </Container>
         <NavButton open={open} setOpen={setOpen} />
     </div>
