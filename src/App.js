@@ -1,8 +1,9 @@
 import React from 'react';
 import history from './utils/history';
 
-import {Router, Route, Switch} from 'react-router-dom';
 import { Auth0Provider, useAuth0 } from "./react-auth0-spa";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {Theme as UWPThemeProvider, getTheme} from 'react-uwp/Theme';
 
 import Layout from './components/Layout'; 
 
@@ -33,11 +34,7 @@ const PrivateRoute = ({ setLoading, component: Component, path, ...rest }) => {
   return <Route path={path} render={render} {...rest} />;
 };
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import Layout from './components/Layout';
-
-import {Theme as UWPThemeProvider, getTheme} from 'react-uwp/Theme';
 
 function App() {
   
@@ -75,10 +72,10 @@ function App() {
               <Route path='/onboarding'>
 
               </Route>
-              <Route setLoading={setProgressLoading} path="/Timekey">
+              <Route path="/Timekey">
                 <Timekey />
               </Route>
-              <PrivateRoute setLoading={setProgressLoading} path="/Market">
+              <PrivateRoute path="/Market">
                 <Market />
               </PrivateRoute>
               <Route path='/xyz'>
