@@ -1,5 +1,5 @@
 FROM node:12 as base
-WORKDIR ~/app/
+WORKDIR /home/node/app/
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
