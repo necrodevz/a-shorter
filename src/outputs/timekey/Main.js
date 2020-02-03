@@ -13,6 +13,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 import FolderIcon from '@material-ui/icons/Folder';
 import RestoreIcon from '@material-ui/icons/Restore';
@@ -99,6 +100,20 @@ export default function Main(props) {
                 </TableRow>    
             </TableBody>
         </Table>
+        <Grid container item spacing={4} xs={12} component={Paper}>
+            <Grid item container md={3} xs={6}>
+                <Grid item xs md={6}>
+                    <Button variant="outlined" color="primary" disabled>Button1</Button>
+                </Grid>
+                <Grid item xs md={6}>
+                    <Button color="primary">Button2</Button>
+                </Grid>
+            </Grid>
+            <Grid item md={6} xs={12} />
+            <Grid item md={3} xs={6}>
+                <Button color="secondary">Cancel Selection</Button>
+            </Grid>
+        </Grid>
     </TableContainer>
   )
 }

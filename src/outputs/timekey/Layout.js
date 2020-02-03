@@ -68,20 +68,7 @@ export default function Layout({children, handleNav, headerText}) {
       <Grid item md={12} xs={12}>
           {children}
       </Grid>
-      <Grid container item spacing={4} xs={12}>
-        <Grid item container md={3} xs={6}>
-          <Grid item xs md={6}>
-              <Button variant="outlined" color="primary" disabled>Button1</Button>
-          </Grid>
-          <Grid item xs md={6}>
-            <Button color="primary">Button2</Button>
-          </Grid>
-        </Grid>
-        <Grid item md={6} xs={12} />
-        <Grid item md={3} xs={6}>
-            <Button color="secondary">Cancel Selection</Button>
-        </Grid>
-      </Grid>
+      
       <Grid item xs={12} alignContent="space-between">
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
             <MenuIcon />
