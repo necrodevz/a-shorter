@@ -7,8 +7,12 @@ COPY . .
 #RUN npm audit fix --force
 #RUN sed -i 's|protocol: \'ws\',|protocol: window.location.protocol === \'https:\' ? \'wss\' : \'ws\',' ./node_modules/react-dev-utils/webpackHotDevClient.js
 ENV NODE_ENV=production
-RUN npm build
+RUN npm run build
 
 FROM nginx:mainline-alpine as container
-COPY --from=base ~/app/build /usr/share/nginx/html
-COPY --from=base ~/app/nginx.conf /etc/nginx/conf.d/default.conf
+RUN apk update
+RUN apk upgrade
+RUN apk add bash
+COPY --from=base /home/node/app/build /usr/share/nginx/html
+COPY --from=base /home/node/app/nginx.conf /etc/nginx/conf.d/default.conf.template
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'

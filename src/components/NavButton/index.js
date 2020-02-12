@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 const actions = [
 
   { icon: <SettingsIcon />, name: 'Settings' },
-  { icon: <Divider />},
+  { icon: <Divider />, name: "-"},
   { icon: <SaveIcon />, name: 'Market' },
   { icon: <FileCopyIcon />, name: 'Timekey' },
 ];
