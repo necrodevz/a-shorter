@@ -10,5 +10,5 @@ ENV NODE_ENV=production
 RUN npm run build
 
 FROM nginx:mainline-alpine as container
-COPY --from=base ~/app/build /usr/share/nginx/html
-COPY --from=base ~/app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=base /home/node/build /usr/share/nginx/html
+COPY --from=base /home/node/app/nginx.conf /etc/nginx/conf.d/default.conf
