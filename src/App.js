@@ -8,8 +8,8 @@ import {Theme as UWPThemeProvider, getTheme} from 'react-uwp/Theme';
 import Layout from './components/Layout'; 
 
 import Timekey from './outputs/timekey';
-import Market from './outputs/market';
 import Home from './outputs/home';
+import Onboarding from './outputs/onboarding';
 
 
 const PrivateRoute = ({ setLoading, component: Component, path, ...rest }) => {
@@ -51,7 +51,7 @@ function App() {
     <Auth0Provider
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       client_id={process.env.REACT_APP_AUTH0_CLIENTID}
-      redirect_uri={`${window.location.origin}/Timekey`}
+      redirect_uri={`${window.location.origin}/onboarding`}
       onRedirectCallback={onRedirectCallback}
     >
     <Router history={history}>
@@ -70,13 +70,13 @@ function App() {
 
               </Route>
               <Route path='/onboarding'>
-
+                <Onboarding />
               </Route>
               <Route path="/Timekey">
                 <Timekey />
               </Route>
               <PrivateRoute path="/Market">
-                <Market />
+                
               </PrivateRoute>
               <Route path='/xyz'>
               </Route>
