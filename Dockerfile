@@ -14,5 +14,5 @@ RUN apk update
 RUN apk upgrade
 RUN apk add bash
 COPY --from=base /home/node/app/build /usr/share/nginx/html
-COPY --from=base /home/node/app/nginx.conf /etc/nginx/conf.d/default.conf
-CMD /bin/bash -c "envsubst '\$PORT' <  /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+COPY --from=base /home/node/app/nginx.conf /etc/nginx/conf.d/default.conf.template
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
