@@ -12,7 +12,7 @@ RUN npm run build
 FROM nginx:mainline-alpine as container
 RUN apk update
 RUN apk upgrade
-Run apk add bash
+RUN apk add bash
 COPY --from=base /home/node/app/build /usr/share/nginx/html
 COPY --from=base /home/node/app/nginx.conf /etc/nginx/conf.d/default.conf
-CMD /bin/sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+CMD /bin/bash -c "envsubst '\$PORT' <  /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
